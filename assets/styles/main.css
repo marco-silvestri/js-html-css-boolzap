@@ -1,0 +1,38 @@
+/* Palette
+#009688 green bg
+#d7dbd7 gray bg
+#ebebeb chat highlith
+#f7f7f7 search bar gray
+#f0f0f0 chatbox gray
+*/
+
+body {
+    height: calc(100vh - 30px);
+    background-image: linear-gradient(
+        to bottom,
+        #009688 0 15%,
+        #d7dbd7 15% 100%
+    );
+}
+
+#app {
+    margin: auto;
+    margin-top: 30px;
+    display: flex;
+    justify-content: center;
+    width: 80%;
+    min-width: 900px;
+    height: 90vh;
+}
+
+#app__col-left {
+    width: 35%;
+    height: 100%;
+    background-color: #ebebeb ;
+}
+
+#app__col-right {
+    width: 65%;
+    height: 100%;
+    background-color: #f7f7f7;
+}
