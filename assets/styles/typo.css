@@ -18,3 +18,13 @@ i {
     color: #919191;
 }
 
+.app__col-left__notifications__caption-zone__bell i {
+    color: #9de1fe;
+}
+
+.app__col-left__notifications__caption-zone__bell {
+    background-color: #FFFFFF;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+}

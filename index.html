@@ -16,7 +16,42 @@
     <div id="app">
     <!-- Left column with Profile, Search bar and Contact list -->
         <div id="app__col-left">
+            <div class="app__col-left__profile-bar">
+                <img src="assets/img/avatar_io.jpg" alt="myAvatar">
+                <div class="app__col-left__profile-bar__profile-buttons">
+                    <i class="fas fa-circle-notch"></i>
+                    <i class="fas fa-comment-alt"></i>
+                    <i class="fas fa-ellipsis-v"></i>
+                </div> 
+            </div>
+            <div class="app__col-left__notifications">
+                <div class="app__col-left__notifications__caption-zone__bell">
+                    <i class="fas fa-bell-slash"></i>
+                </div>
+                <div class="app__col-left__notifications__caption-zone">
+                    <h3>Ricevi notifiche di nuovi messaggi</h3>
+                    <a href="#">Attiva notifiche desktop</a>
+                </div>
+            </div>
+            <div class="app__col-left__search-bar">
+                <i class="fas fa-search"></i>
+                <input type="text" name="search-text" placeholder="Cerca o inizia una nuova chat">
+            </div>
+            <!-- Chat list -->
+            <div class="app__col-left__chat-list">
+            <!-- Chat item with avatar + contact name and chat excerpt -->
+                <div class="app__col-left__chat-list__chat-item">
+                    avatar
+                    <div class="app__col-left__chat-list__chat-item__item-text">
+                        <div class="app__col-left__chat-list__chat-item__item-text__contact-name">
 
+                        </div>
+                        <div class="app__col-left__chat-list__chat-item__item-text__item-excerpt">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     <!-- Right column with expanded chat -->
         <div class="" id="app__col-right">
