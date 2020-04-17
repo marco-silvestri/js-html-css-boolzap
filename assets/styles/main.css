@@ -214,3 +214,9 @@ img {
 .app__col-right__chat-bar i {
     margin: 0 10px;
 }
+
+/* Templates */
+
+.templates {
+    display: none;
+}
