@@ -26,7 +26,7 @@ img {
     width: 80%;
     min-width: 900px;
     height: 90vh;
-    min-height: 300px;
+    min-height: 500px;
 }
 
 /* Left column with profile and conversations */
@@ -176,8 +176,8 @@ img {
     width: 80%;
 }
 
-.app__col-right__chat-bar .fa-paper-plane {
-    display: none; /* jQuery */
+.app__col-right__chat-bar__send-button {
+    width: 40px;
 }
 
 /* Messages styles */
