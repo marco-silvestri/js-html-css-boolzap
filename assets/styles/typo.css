@@ -14,6 +14,7 @@ body {
     font-family: 'Lato', sans-serif;
 }
 
+#app__col-left span,
 i {
     color: #919191;
 }
