@@ -21,11 +21,9 @@ i {
 
 .app__col-left__notifications__caption-zone__bell i {
     color: #9de1fe;
+    font-size: 1.5em;
 }
 
-.app__col-left__notifications__caption-zone__bell {
-    background-color: #FFFFFF;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
+.app__col-left__search-bar__search-wrapper i {
+    font-size: .8em;
 }

@@ -17,7 +17,9 @@
     <!-- Left column with Profile, Search bar and Contact list -->
         <div id="app__col-left">
             <div class="app__col-left__profile-bar">
-                <img src="assets/img/avatar_io.jpg" alt="myAvatar">
+                <div class="app__col-left__profile-bar__img-wrapper">
+                    <img src="assets/img/avatar_io.jpg" alt="myAvatar">
+                </div>
                 <div class="app__col-left__profile-bar__profile-buttons">
                     <i class="fas fa-circle-notch"></i>
                     <i class="fas fa-comment-alt"></i>
@@ -34,7 +36,9 @@
                 </div>
             </div>
             <div class="app__col-left__search-bar">
-                <i class="fas fa-search"></i>
+                <div class="app__col-left__search-bar__search-wrapper">
+                    <i class="fas fa-search"></i>
+                </div>
                 <input type="text" name="search-text" placeholder="Cerca o inizia una nuova chat">
             </div>
             <!-- Chat list -->
@@ -155,8 +159,30 @@
             </div>
         </div>
     <!-- Right column with expanded chat -->
-        <div class="" id="app__col-right">
-
+        <div id="app__col-right">
+            <div class="app__col-right__profile-bar">
+                <img src="assets/img/avatar_1.jpg" alt="Chat 1">
+                <div class="app__col-right__profile-bar__profile-item">
+                    <div class="app__col-right__profile-bar__profile-item__contact-name">
+                        <h2>Michele</h2> 
+                    </div>
+                    <div class="app__col-right__profile-bar__profile-item__last-access">
+                        <span>Ultimo accesso oggi alle 15.40</span>
+                    </div>
+                </div>
+                <div class="app__col-right__profile-bar__profile-buttons">
+                    <i class="fas fa-search"></i>
+                    <i class="fas fa-paperclip"></i>
+                    <i class="fas fa-ellipsis-v"></i>
+                </div> 
+        </div>
+        <div class="app__col-right__chat-box">
+        </div>
+        <div class="app__col-right__chat-bar">
+            <i class="far fa-smile"></i>
+            <input type="text" name="new-message" placeholder="Scrivi un messaggio">
+            <i class="fas fa-microphone"></i>
+            <i class="fas fa-paper-plane"></i>
         </div>
     </div>
     <!-- jQuery -->
