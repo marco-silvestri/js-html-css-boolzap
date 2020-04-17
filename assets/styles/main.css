@@ -1,17 +1,11 @@
-/* Palette
-#009688 green bg
-#d7dbd7 gray bg
-#ebebeb chat highlith
-#f7f7f7 search bar gray
-#f0f0f0 chatbox gray
-*/
+/* General styles */
 
 body {
     height: calc(100vh - 30px);
     background-image: linear-gradient(
         to bottom,
-        #009688 0 150px,
-        #d7dbd7 150px 100%
+        #009688 0 160px,
+        #d7dbd7 160px 100%
     );
     background-repeat: no-repeat;
 }
@@ -21,6 +15,8 @@ img {
     height: 50px;
     border-radius: 50%;
 }
+
+/* Main wrapper */
 
 #app {
     margin: auto;
@@ -33,18 +29,14 @@ img {
     min-height: 300px;
 }
 
+/* Left column with profile and conversations */
+
 #app__col-left {
     width: 35%;
     height: 100%;
     display: flex;
     flex-direction: column;
     background-color: #ebebeb ;
-}
-
-#app__col-right {
-    width: 65%;
-    height: 100%;
-    background-color: #f7f7f7;
 }
 
 .app__col-left__profile-bar__img-wrapper {
@@ -62,7 +54,7 @@ img {
     display: flex;
     align-items: center;
     justify-content: space-around;
-    min-height: 100px;
+    min-height: 80px;
     background-color: #9de1fe;
 }
 
@@ -140,9 +132,14 @@ img {
     border-right: 1px solid #CCC;
 }
 
+/* Right column with chatbox */
+
 #app__col-right {
     display: flex;
     flex-direction: column;
+    width: 65%;
+    height: 100%;
+    background-color: #f7f7f7;
 }
 
 .app__col-right__profile-bar {
@@ -159,6 +156,8 @@ img {
 
 .app__col-right__chat-box {
     flex-grow: 1;
+    display: flex;
+    flex-direction: column;
     background-image: url('../img/mine.jpg');
 }
 
@@ -181,7 +180,29 @@ img {
     display: none; /* jQuery */
 }
 
+/* Messages styles */
+
+.app__col-right__chat-box__message {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    width: 20%;
+    padding: 10px;
+    margin: 30px;;
+    border-radius: 5px;
+}
+
+.message--sent {
+    background-color: #dcf8c6;
+    align-self: flex-end;
+}
+
+.message--received {
+    background-color: #FFFFFF;
+}
+
 /* Margins */
+
 .app__col-left__profile-bar img,
 .app__col-left__profile-bar i,
 .app__col-left__chat-list__chat-item img,

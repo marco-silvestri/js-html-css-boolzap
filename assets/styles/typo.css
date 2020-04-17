@@ -14,8 +14,22 @@ body {
     font-family: 'Lato', sans-serif;
 }
 
-#app__col-left span,
 i {
+    font-size: 1.2em;
+}
+
+a,
+span {
+    font-size: .8em;
+}
+
+h2 {
+    font-size: 1em;
+}
+
+i,
+#app__col-left span,
+#app__col-right span {
     color: #919191;
 }
 
@@ -26,4 +40,14 @@ i {
 
 .app__col-left__search-bar__search-wrapper i {
     font-size: .8em;
+}
+
+#app__col-right span.message__body {
+    color: #000000;
+    margin-left: 10px;
+}
+
+#app__col-right span.message__time {
+    font-size: .6em;
+    text-align: right;
 }
