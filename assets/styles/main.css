@@ -187,11 +187,9 @@ img {
     display: flex;
     flex-direction: column;
     justify-content: space-around;
-    min-width: 20%;
-    max-width: 40%;
     word-wrap: break-word;
     padding: 10px;
-    margin: 30px;;
+    margin: 30px;
     border-radius: 5px;
 }
 
@@ -202,6 +200,7 @@ img {
 
 .message--received {
     background-color: #FFFFFF;
+    align-self: flex-start;
 }
 
 /* Margins */

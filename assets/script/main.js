@@ -58,8 +58,8 @@ $(document).ready(function () {
 
     function addAutoAnswer(){
         getTemplates();
-        cloneTemplateText.append("Bella zio!");
-        cloneTemplateTime.append(getTimeFormatted());
+        cloneTemplateText.prepend(pickRandomAnswer());
+        cloneTemplateTime.prepend(getTimeFormatted());
         cloneTemplateMessage.removeClass('message--sent').addClass('message--received').append(cloneTemplateText, cloneTemplateTime);
         chatBox.append(cloneTemplateMessage);
     };
@@ -84,6 +84,29 @@ $(document).ready(function () {
         var h = addZero(d.getHours());
         var m = addZero(d.getMinutes());
         return h + "." + m;
+    };
+
+    // Pick a random answer from a collection
+    function pickRandomAnswer() {
+        var answersCollection = [
+            'Bella zio!',
+            'Non capisco, puoi ripetere?',
+            'Grazie, ho ricevuto il tuo PayPal.',
+            'Va bene, pizza e birra allora?',
+            'Anche io!',
+            'Preferisco la seconda opzione.',
+            'Hai ragione.',
+            'Ti capisco perfettamente',
+            'Lo sai che posso trattenere il respire per 10 minuti?',
+            'Si, ma scrivilo meglio.',
+            'lol',
+            'ahahah',
+            'mmm?',
+            'rotfl'
+        ];
+
+        var randomNumber = Math.random() * answersCollection.length | 0;
+        return answersCollection[randomNumber];
     };
 
 });
