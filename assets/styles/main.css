@@ -159,6 +159,7 @@ img {
     display: flex;
     flex-direction: column;
     background-image: url('../img/mine.jpg');
+    overflow-y: auto;
 }
 
 .app__col-right__chat-bar {
@@ -219,4 +220,17 @@ img {
 
 .templates {
     display: none;
+}
+
+/* Scrollbar */
+
+.app__col-left__chat-list::-webkit-scrollbar,
+.app__col-right__chat-box::-webkit-scrollbar {
+	width: 6px;
+    opacity: .5;
+}
+
+.app__col-left__chat-list::-webkit-scrollbar-thumb,
+.app__col-right__chat-box::-webkit-scrollbar-thumb {
+	background-color: #CCC;
 }

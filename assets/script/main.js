@@ -6,6 +6,12 @@ $(document).ready(function () {
     var inputArea = $('.app__col-right__chat-bar input');
     var chatBox = $('.app__col-right__chat-box');
 
+    /* Global Referincing for Templates */
+
+    var cloneTemplateMessage;
+    var cloneTemplateText;
+    var cloneTemplateTime;
+
     //Add the note on the click of the SEND button
     buttonSubmit.click(addNewElement);
 
@@ -40,16 +46,23 @@ $(document).ready(function () {
             inputArea.val('');
         }
         else {
-            var cloneTemplateMessage = $('.templates .app__col-right__chat-box__message.message--sent').clone();
-            var cloneTemplateText = $('.templates .app__col-right__chat-box__message.message--sent .message__body').clone();
-            var cloneTemplateTime = $('.templates .app__col-right__chat-box__message.message--sent .message__time').clone();
+            getTemplates();
             cloneTemplateText.prepend(inputArea.val().trim());
-            cloneTemplateTime.prepend(timeFormatter());
-            cloneTemplateMessage.append(cloneTemplateText, cloneTemplateTime);
+            cloneTemplateTime.prepend(getTimeFormatted());
+            cloneTemplateMessage.addClass('message--sent').append(cloneTemplateText, cloneTemplateTime);
             chatBox.append(cloneTemplateMessage);
-            inputArea.val('');    
+            inputArea.val('');
+            setTimeout(addAutoAnswer, 2000);  
         }
-    }
+    };
+
+    function addAutoAnswer(){
+        getTemplates();
+        cloneTemplateText.append("Bella zio!");
+        cloneTemplateTime.append(getTimeFormatted());
+        cloneTemplateMessage.removeClass('message--sent').addClass('message--received').append(cloneTemplateText, cloneTemplateTime);
+        chatBox.append(cloneTemplateMessage);
+    };
 
     // Add the digit 0 to the time if the value has only one digit
     function addZero(time) {
@@ -57,14 +70,20 @@ $(document).ready(function () {
             time = "0" + time;
         }
             return time;
+    };
+
+    function getTemplates(){
+        cloneTemplateMessage = $('.templates .app__col-right__chat-box__message').clone();
+        cloneTemplateText = $('.templates .app__col-right__chat-box__message .message__body').clone();
+        cloneTemplateTime = $('.templates .app__col-right__chat-box__message .message__time').clone();
     }
 
     // User friendly time format
-    function timeFormatter() {
+    function getTimeFormatted() {
         var d = new Date();
         var h = addZero(d.getHours());
         var m = addZero(d.getMinutes());
         return h + "." + m;
-    }
+    };
 
 });
