@@ -123,7 +123,7 @@ img {
     background-color: #e0e0e0;
 }
 
-.app__col-left__chat-list__chat-item--active {
+.chat-item--active {
     background-color: #c1c1c1;
 }
 
