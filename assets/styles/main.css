@@ -1,11 +1,14 @@
 /* General styles */
 
 body {
-    height: calc(100vh - 30px);
+display: flex;
+height: 100vh;
+align-items: center;
+justify-content: center;
     background-image: linear-gradient(
         to bottom,
         #009688 0 160px,
-        #d7dbd7 160px 100%
+        #d7dbd7 160px 100vh
     );
     background-repeat: no-repeat;
 }
@@ -19,8 +22,6 @@ img {
 /* Main wrapper */
 
 #app {
-    margin: auto;
-    margin-top: 30px;
     display: flex;
     justify-content: center;
     width: 80%;
@@ -90,7 +91,7 @@ img {
 }
 
 .app__col-left__search-bar__search-wrapper i {
-    margin: 0 20px;
+    margin: 0 15px;
 }
 
 .app__col-left__search-bar input {

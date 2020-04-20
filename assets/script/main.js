@@ -12,6 +12,8 @@ $(document).ready(function () {
     var cloneTemplateText;
     var cloneTemplateTime;
 
+    var iconFlipper;
+
     //Add the note on the click of the SEND button
     buttonSubmit.click(addNewElement);
 
@@ -21,19 +23,14 @@ $(document).ready(function () {
         if (e.which == 13 || e.keyCode == 13){ //13 is ENTER
             addNewElement();
         }
-        else if (e.which == 8 || e.keyCode == 8){ //8 is BACKSPACE
-            var iconFlipper = false;
+        else if (e.which == 8 || e.which == 46 || e.keyCode == 8 || e.keyCode == 46 || inputArea.val() == ''){ //8 is BACKSPACE 46 is DEL
+            iconFlipper = false;
         }
         else {
-            var iconFlipper = true;
+            iconFlipper = true;
         }
 
-        if (iconFlipper){
-            buttonSubmit.removeClass('fa-microphone').addClass('fa-paper-plane');
-        }
-        else if (!iconFlipper && inputArea.val() == null || inputArea.val().trim() == '') {
-            buttonSubmit.removeClass('fa-paper-plane').addClass('fa-microphone');
-        }
+        flipSendIcon();
     });
 
     /****************
@@ -52,6 +49,8 @@ $(document).ready(function () {
             cloneTemplateMessage.addClass('message--sent').append(cloneTemplateText, cloneTemplateTime);
             chatBox.append(cloneTemplateMessage);
             inputArea.val('');
+            iconFlipper = false;
+            flipSendIcon();
             setTimeout(addAutoAnswer, 2000);  
         }
     };
@@ -84,6 +83,15 @@ $(document).ready(function () {
         var h = addZero(d.getHours());
         var m = addZero(d.getMinutes());
         return h + "." + m;
+    };
+
+    function flipSendIcon() {
+        if (iconFlipper){
+            buttonSubmit.removeClass('fa-microphone').addClass('fa-paper-plane');
+        }
+        else if (!iconFlipper && inputArea.val() == null || inputArea.val().trim() == '') {
+            buttonSubmit.removeClass('fa-paper-plane').addClass('fa-microphone');
+        }
     };
 
     // Pick a random answer from a collection
