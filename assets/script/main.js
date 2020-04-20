@@ -5,7 +5,7 @@ $(document).ready(function () {
     var buttonSubmit = $('.app__col-right__chat-bar__send-button i');
     var inputArea = $('.app__col-right__chat-bar input');
     var chatBox = $('.app__col-right__chat-box');
-    var chatItem = $('.app__col-left__chat-list__chat-item__item');
+    var chatItem = $('.app__col-left__chat-list__chat-item');
     var chatTitle = $('.app__col-left__chat-list__chat-item__item-text__contact-name');
     var searchBar = $('.app__col-left__search-bar input');
 
@@ -15,13 +15,8 @@ $(document).ready(function () {
     var cloneTemplateText;
     var cloneTemplateTime;
 
-    
-    var iconFlipper; // Status of the send icon
-    var contactList = [];
-
-    for (let index = 0; index < chatTitle.length; index++) {
-        contactList.push(chatTitle.eq(index).children().text());
-    }
+    // Status of the send icon
+    var iconFlipper;
     
     // Chat Highlight on click
     chatItem.click(function(){
@@ -49,14 +44,11 @@ $(document).ready(function () {
     });
 
     searchBar.keyup(function(e) {
-        for (let i = 0; i < contactList.length; i++) {
-            if(contactList[i].includes(searchBar.val())){
-                console.log(chatItem.eq(i));
-                
+        for (let i = 0; i < chatTitle.length; i++) {
+            if(chatTitle.eq(i).children().text().includes(searchBar.val())){
                 chatItem.eq(i).show();
             }
             else {
-                console.log(chatItem.eq(i));
                 chatItem.eq(i).hide();
             }
         }
