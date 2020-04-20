@@ -12,6 +12,7 @@ $(document).ready(function () {
     var cloneTemplateText;
     var cloneTemplateTime;
 
+    /* Send-icon status */
     var iconFlipper;
 
     //Add the note on the click of the SEND button
@@ -55,6 +56,7 @@ $(document).ready(function () {
         }
     };
 
+    // Add a random answer
     function addAutoAnswer(){
         getTemplates();
         cloneTemplateText.prepend(pickRandomAnswer());
@@ -63,6 +65,13 @@ $(document).ready(function () {
         chatBox.append(cloneTemplateMessage);
     };
 
+    // Get blank templates
+    function getTemplates(){
+        cloneTemplateMessage = $('.templates .app__col-right__chat-box__message').clone();
+        cloneTemplateText = $('.templates .app__col-right__chat-box__message .message__body').clone();
+        cloneTemplateTime = $('.templates .app__col-right__chat-box__message .message__time').clone();
+    }
+    
     // Add the digit 0 to the time if the value has only one digit
     function addZero(time) {
         if (time < 10) {
@@ -70,12 +79,6 @@ $(document).ready(function () {
         }
             return time;
     };
-
-    function getTemplates(){
-        cloneTemplateMessage = $('.templates .app__col-right__chat-box__message').clone();
-        cloneTemplateText = $('.templates .app__col-right__chat-box__message .message__body').clone();
-        cloneTemplateTime = $('.templates .app__col-right__chat-box__message .message__time').clone();
-    }
 
     // User friendly time format
     function getTimeFormatted() {
@@ -85,6 +88,7 @@ $(document).ready(function () {
         return h + "." + m;
     };
 
+    // Switch the send icon based on the input
     function flipSendIcon() {
         if (iconFlipper){
             buttonSubmit.removeClass('fa-microphone').addClass('fa-paper-plane');
@@ -112,7 +116,6 @@ $(document).ready(function () {
             'mmm?',
             'rotfl'
         ];
-
         var randomNumber = Math.random() * answersCollection.length | 0;
         return answersCollection[randomNumber];
     };
