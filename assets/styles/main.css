@@ -119,8 +119,12 @@ img {
     border-color: transparent;
 }
 
-.app__col-left__chat-list__chat-item:hover{
+.app__col-left__chat-list__chat-item:hover { 
     background-color: #e0e0e0;
+}
+
+.app__col-left__chat-list__chat-item--active {
+    background-color: #c1c1c1;
 }
 
 .app__col-left__chat-list__chat-item__item-text {

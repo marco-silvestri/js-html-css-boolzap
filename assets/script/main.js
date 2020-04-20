@@ -5,6 +5,9 @@ $(document).ready(function () {
     var buttonSubmit = $('.app__col-right__chat-bar__send-button i');
     var inputArea = $('.app__col-right__chat-bar input');
     var chatBox = $('.app__col-right__chat-box');
+    var chatItem = $('.app__col-left__chat-list__chat-item__item');
+    var chatTitle = $('.app__col-left__chat-list__chat-item__item-text__contact-name h2');
+    var searchBar = $('.app__col-left__search-bar input');
 
     /* Global Referincing for Templates */
 
@@ -12,8 +15,19 @@ $(document).ready(function () {
     var cloneTemplateText;
     var cloneTemplateTime;
 
-    /* Send-icon status */
-    var iconFlipper;
+    
+    var iconFlipper; // Status of the send icon
+    var contactList = [];
+
+    chatItem.each(function (valueOfElement) { 
+        contactList.push(valueOfElement);
+    });
+
+    chatItem.click(function(){
+        chatItem.removeClass('app__col-left__chat-list__chat-item--active');
+        $(this).addClass('app__col-left__chat-list__chat-item--active');
+    })
+
 
     //Add the note on the click of the SEND button
     buttonSubmit.click(addNewElement);
@@ -30,8 +44,18 @@ $(document).ready(function () {
         else {
             iconFlipper = true;
         }
-
         flipSendIcon();
+    });
+
+    searchBar.keyup(function(e) {
+        for (let i = 0; i < contactList.length; i++) {
+            if(contactList[i].includes(searchBar.val())){
+                chatItem[i].show();
+            }
+            else {
+                chatItem[i].hide();
+            }
+        }
     });
 
     /****************
@@ -52,7 +76,7 @@ $(document).ready(function () {
             inputArea.val('');
             iconFlipper = false;
             flipSendIcon();
-            setTimeout(addAutoAnswer, 2000);  
+            setTimeout(addAutoAnswer, 1000);  
         }
     };
 
@@ -120,4 +144,7 @@ $(document).ready(function () {
         return answersCollection[randomNumber];
     };
 
+    function searchHighlight () {
+
+    }
 });
