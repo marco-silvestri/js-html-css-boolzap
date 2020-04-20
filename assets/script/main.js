@@ -20,8 +20,8 @@ $(document).ready(function () {
     
     // Chat Highlight on click
     chatItem.click(function(){
-        chatItem.removeClass('app__col-left__chat-list__chat-item--active');
-        $(this).addClass('app__col-left__chat-list__chat-item--active');
+        chatItem.removeClass('chat-item--active');
+        $(this).addClass('chat-item--active');
     })
 
 
@@ -44,14 +44,7 @@ $(document).ready(function () {
     });
 
     searchBar.keyup(function(e) {
-        for (let i = 0; i < chatTitle.length; i++) {
-            if(chatTitle.eq(i).children().text().includes(searchBar.val())){
-                chatItem.eq(i).show();
-            }
-            else {
-                chatItem.eq(i).hide();
-            }
-        }
+        searchHighlight();
     });
 
     /****************
@@ -140,7 +133,15 @@ $(document).ready(function () {
         return answersCollection[randomNumber];
     };
 
-    function searchHighlight () {
-
+    // Search function
+    function searchHighlight() {
+        for (let i = 0; i < chatTitle.length; i++) {
+            if(chatTitle.eq(i).children().text().includes(searchBar.val())){
+                chatItem.eq(i).show();
+            }
+            else {
+                chatItem.eq(i).hide();
+            }
+        }
     }
 });
