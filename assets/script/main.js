@@ -15,6 +15,11 @@ $(document).ready(function () {
     var cloneTemplateText;
     var cloneTemplateTime;
 
+    // Add a custom attribute for pointing
+    for (var i = 0; i < chatItem.length; i++) {
+        chatItem.eq(i).attr('data-contact', i);  
+    }  
+
     // Status of the send icon
     var iconFlipper;
     
