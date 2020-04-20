@@ -5,10 +5,14 @@ $(document).ready(function () {
     var buttonSubmit = $('.app__col-right__chat-bar__send-button i');
     var inputArea = $('.app__col-right__chat-bar input');
     var chatBox = $('.app__col-right__chat-box');
+    var appRight = $('#app__col-right');
     var chatItem = $('.app__col-left__chat-list__chat-item');
     var chatTitle = $('.app__col-left__chat-list__chat-item__item-text__contact-name');
     var searchBar = $('.app__col-left__search-bar input');
-
+    var splashScreen = $('.app__col-right__splash-screen');
+    var contactName = $('.app__col-right__profile-bar__profile-item__contact-name').children();
+    var chatAvatar = $('.app__col-right__profile-bar img');
+    
     /* Global Referincing for Templates */
 
     var cloneTemplateMessage;
@@ -24,10 +28,7 @@ $(document).ready(function () {
     var iconFlipper;
     
     // Chat Highlight on click
-    chatItem.click(function(){
-        chatItem.removeClass('chat-item--active');
-        $(this).addClass('chat-item--active');
-    })
+    chatItem.click(loaderContact);
 
 
     //Add the note on the click of the SEND button
@@ -148,5 +149,17 @@ $(document).ready(function () {
                 chatItem.eq(i).hide();
             }
         }
+    }
+
+    // Load contact details from the contact list on the left to the top bar on the right
+    function loaderContact() {
+        var src = $(this).find('img').attr('src');
+        chatItem.removeClass('chat-item--active');
+        $(this).addClass('chat-item--active');
+        splashScreen.remove();
+        appRight.removeClass('u--none');
+        appRight.addClass('u--flex');
+        contactName.text($(this).find('h2').text());
+        chatAvatar.attr('src',src);
     }
 });

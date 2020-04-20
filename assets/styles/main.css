@@ -140,11 +140,19 @@ img {
 /* Right column with chatbox */
 
 #app__col-right {
-    display: flex;
     flex-direction: column;
     width: 65%;
     height: 100%;
     background-color: #f7f7f7;
+    display: none;
+}
+
+.u--flex {
+    display: flex!important;
+}
+
+.u--none {
+    display: none;
 }
 
 .app__col-right__profile-bar {
@@ -157,6 +165,17 @@ img {
 
 .app__col-right__profile-bar__profile-item {
     flex-grow: 1;
+}
+
+.app__col-right__splash-screen {
+    width: 65%;
+    height: 100%;
+    background-image: url('../img/splash_screen.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-color: #f8f9fa;
+    border-bottom: 5px solid #4adf83;
 }
 
 .app__col-right__chat-box {
