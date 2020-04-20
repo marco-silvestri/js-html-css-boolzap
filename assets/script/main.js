@@ -19,10 +19,11 @@ $(document).ready(function () {
     var iconFlipper; // Status of the send icon
     var contactList = [];
 
-    chatItem.each(function (valueOfElement) { 
+    chatTitle.each(function (valueOfElement) { 
         contactList.push(valueOfElement);
     });
 
+    // Chat Highlight on click
     chatItem.click(function(){
         chatItem.removeClass('app__col-left__chat-list__chat-item--active');
         $(this).addClass('app__col-left__chat-list__chat-item--active');
@@ -50,10 +51,10 @@ $(document).ready(function () {
     searchBar.keyup(function(e) {
         for (let i = 0; i < contactList.length; i++) {
             if(contactList[i].includes(searchBar.val())){
-                chatItem[i].show();
+                contactList[i].show();
             }
             else {
-                chatItem[i].hide();
+                contactList[i].hide();
             }
         }
     });
