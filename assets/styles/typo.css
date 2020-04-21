@@ -51,3 +51,15 @@ i,
     font-size: .6em;
     text-align: right;
 }
+
+.app__col-right__chat-box__message::before {
+    margin: -5px 0 0 0px;
+    padding: 0 0 0 80px;
+    text-align: right;
+    color: #919191;
+    font-size: .8em;
+}
+
+.dropdown{
+    font-size: .7em;
+}

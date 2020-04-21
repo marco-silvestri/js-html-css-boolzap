@@ -56,6 +56,22 @@ $(document).ready(function () {
         searchHighlight(searchKey);
     });
 
+    // Open a contextual menu on message click, pseuso icon is decorative
+    $('#app__col-right').on('click', '.app__col-right__chat-box__message', function(){
+        $('.dropdown').hide();
+        $(this).find('.dropdown').show();
+    });
+
+    // Close the contextual menu when leaving the message
+    $('#app__col-right').on('mouseleave', '.app__col-right__chat-box__message', function(){
+        $('.dropdown').hide();
+    });
+
+    // Remove the selected message
+    $('#app__col-right').on('click', '.delete-message', function(){
+        $(this).parents('.app__col-right__chat-box__message').remove();
+    });
+
     /****************
      *    Functions
     *****************/
@@ -169,6 +185,3 @@ $(document).ready(function () {
         $('.app__col-right__chat-box[data-contact="'+ contact +'"').addClass('u--active');
     };
 });
-
-//add dropdown (info + delete----delete is working)
-//auto scroll

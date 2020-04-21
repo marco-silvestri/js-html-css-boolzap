@@ -203,6 +203,7 @@ img {
 /* Messages styles */
 
 .app__col-right__chat-box__message {
+    position: relative;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
@@ -210,6 +211,17 @@ img {
     padding: 10px;
     margin: 30px;
     border-radius: 5px;
+}
+
+.app__col-right__chat-box__message::before {
+    font-family: "Font Awesome 5 Free"; 
+    font-weight: 900; 
+    content: "\f078";
+    opacity: 0;
+}
+
+.app__col-right__chat-box__message:hover::before {
+    opacity: 1;
 }
 
 .message--sent {
@@ -259,4 +271,27 @@ img {
 
 .u--active {
     display: flex;
+}
+
+.dropdown{
+    display: none;
+    list-style: none;
+    background-color: #f0f0f0;
+    position: absolute;
+    top: 80%;
+    right: 5%;
+    padding: 10px;
+    border: 1px solid #CCC;
+}
+
+.dropdown li {
+    padding: 5px;
+}
+
+.dropdown li:hover {
+    background-color: #CCC;
+}
+
+.dropdown li:first-child {
+    border-bottom: 1px solid #CCC;
 }
