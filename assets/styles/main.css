@@ -273,6 +273,8 @@ img {
     display: flex;
 }
 
+/* Dropdown Styles */
+
 .dropdown{
     display: none;
     list-style: none;

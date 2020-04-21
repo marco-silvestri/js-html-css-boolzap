@@ -11,7 +11,7 @@ $(document).ready(function () {
     var contactName = $('.app__col-right__profile-bar__profile-item__contact-name').children();
     var chatAvatar = $('.app__col-right__profile-bar img');
     
-    /* Global Referincing for Templates */
+    /* Global Empty Instances for Templates */
 
     var chatBoxActive;
     var cloneTemplateMessage;
@@ -22,8 +22,12 @@ $(document).ready(function () {
     for (var i = 0; i < chatItem.length; i++) {
         chatItem.eq(i).attr('data-contact', i);
         chatBox.eq(i).attr('data-contact', i);
+        // Print last time seen
         var chatTime = chatBox.eq(i).find('.app__col-right__chat-box__message:last-child').children('span.message__time').text();
         chatItem.eq(i).find('.app__col-left__chat-list__item-time span').text(chatTime);
+        // Print last text excerpt
+        var chatExcerpt = chatBox.eq(i).find('.app__col-right__chat-box__message:last-child').children('span.message__body').text();
+        chatItem.eq(i).find('.app__col-left__chat-list__chat-item__item-text__item-excerpt span').text(chatExcerpt);
     }
 
     // Status of the send icon
@@ -32,10 +36,8 @@ $(document).ready(function () {
     // Chat Highlight on click
     chatItem.click(loaderContact);
 
-
     //Add the note on the click of the SEND button
     buttonSubmit.click(addNewElement);
-
 
     // Add the new note on the hit of ENTER and flip the send icon depending on the content of the inputArea
     inputArea.keyup(function(e){
@@ -102,8 +104,7 @@ $(document).ready(function () {
         cloneTemplateTime.text(getTimeFormatted());
         cloneTemplateMessage.removeClass('message--sent').addClass('message--received').append(cloneTemplateText, cloneTemplateTime);
         chatBoxActive.append(cloneTemplateMessage);
-        var chatTime = chatBoxActive.find('.app__col-right__chat-box__message:last-child').children('span.message__time').text();
-        $('.app__col-right__profile-bar__profile-item__last-access span').text('Ultimo accesso oggi alle ' + chatTime);
+        updateLastSeen();
         scrollMessage();
     };
 
@@ -163,11 +164,11 @@ $(document).ready(function () {
         return answersCollection[randomNumber];
     };
 
-    // Search function    
+    // Search function based on contact  
     function searchHighlight(searchKey) {
         chatItem.each(function() {
-            var thisElement = $(this).find('h2').text().toLowerCase();
-            if(thisElement.includes(searchKey)){
+            var thisElementContact = $(this).find('h2').text().toLowerCase();
+            if(thisElementContact.includes(searchKey)){
                 $(this).show();
             }
             else {
@@ -188,13 +189,19 @@ $(document).ready(function () {
         chatBox.removeClass('u--active');
         $('.app__col-right__chat-box[data-contact="'+ contact +'"').addClass('u--active');        
         chatBoxActive = $('.app__col-right__chat-box.u--active');
-        var chatTime = chatBoxActive.find('.app__col-right__chat-box__message:last-child').children('span.message__time').text();
-        $('.app__col-right__profile-bar__profile-item__last-access span').text('Ultimo accesso oggi alle ' + chatTime);
+        updateLastSeen();       
     };
 
     // Scroll to the last message
     function scrollMessage() {
         var pixelScroll = chatBoxActive.height();
         chatBox.scrollTop(pixelScroll);
-    }
+    };
+
+    // Update the last seen status, based on the last text sent by the bot
+    function updateLastSeen() {
+        var chatTime = chatBoxActive.find('.app__col-right__chat-box__message:last-child').children('span.message__time').text();
+        $('.app__col-right__profile-bar__profile-item__last-access span').text('Ultimo accesso oggi alle ' + chatTime);
+    };
 });
+//END document.ready
