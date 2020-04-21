@@ -4,24 +4,26 @@ $(document).ready(function () {
 
     var buttonSubmit = $('.app__col-right__chat-bar__send-button i');
     var chatItem = $('.app__col-left__chat-list__chat-item');
-    var chatTitle = $('.app__col-left__chat-list__chat-item__item-text__contact-name');
+    //var chatTitle = $('.app__col-left__chat-list__chat-item__item-text__contact-name');
     var searchBar = $('.app__col-left__search-bar input');
     var inputArea = $('.app__col-right__chat-bar input');
     var chatBox = $('.app__col-right__chat-box');
-    var appRight = $('#app__col-right');
+    //var appRight = $('#app__col-right');
     var splashScreen = $('.app__col-right__splash-screen');
     var contactName = $('.app__col-right__profile-bar__profile-item__contact-name').children();
     var chatAvatar = $('.app__col-right__profile-bar img');
     
     /* Global Referincing for Templates */
 
+    var chatBoxActive;
     var cloneTemplateMessage;
     var cloneTemplateText;
     var cloneTemplateTime;
 
     // Add a custom attribute for pointing
     for (var i = 0; i < chatItem.length; i++) {
-        chatItem.eq(i).attr('data-contact', i);  
+        chatItem.eq(i).attr('data-contact', i);
+        chatBox.eq(i).attr('data-contact', i);
     }
 
     // Status of the send icon
@@ -68,7 +70,7 @@ $(document).ready(function () {
             cloneTemplateText.text(inputArea.val().trim());
             cloneTemplateTime.text(getTimeFormatted());
             cloneTemplateMessage.addClass('message--sent').append(cloneTemplateText, cloneTemplateTime);
-            chatBox.append(cloneTemplateMessage);
+            chatBoxActive.append(cloneTemplateMessage);
             inputArea.val('');
             iconFlipper = false;
             flipSendIcon();
@@ -78,15 +80,16 @@ $(document).ready(function () {
 
     // Add a random answer
     function addAutoAnswer(){
+        getTemplates();
         cloneTemplateText.text(pickRandomAnswer());
         cloneTemplateTime.text(getTimeFormatted());
         cloneTemplateMessage.removeClass('message--sent').addClass('message--received').append(cloneTemplateText, cloneTemplateTime);
-        chatBox.append(cloneTemplateMessage);
+        chatBoxActive.append(cloneTemplateMessage);
     };
 
     // Get blank templates
     function getTemplates(){
-
+        chatBoxActive = $('.app__col-right__chat-box.u--active');
         cloneTemplateMessage = $('.templates .app__col-right__chat-box__message').clone();
         cloneTemplateText = $('.templates .app__col-right__chat-box__message .message__body').clone();
         cloneTemplateTime = $('.templates .app__col-right__chat-box__message .message__time').clone();
@@ -156,10 +159,16 @@ $(document).ready(function () {
     // Load contact details from the contact list on the left to the top bar on the right
     function loaderContact() {
         var src = $(this).find('img').attr('src');
+        var contact = $(this).attr('data-contact');
         chatItem.removeClass('chat-item--active');
         $(this).addClass('chat-item--active');
         splashScreen.remove();
         contactName.text($(this).find('h2').text());
         chatAvatar.attr('src',src);
+        chatBox.removeClass('u--active');
+        $('.app__col-right__chat-box[data-contact="'+ contact +'"').addClass('u--active');
     };
 });
+
+//add dropdown (info + delete----delete is working)
+//auto scroll
