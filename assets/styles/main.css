@@ -140,19 +140,12 @@ img {
 /* Right column with chatbox */
 
 #app__col-right {
+    display: flex;
+    position: relative;
     flex-direction: column;
     width: 65%;
     height: 100%;
     background-color: #f7f7f7;
-    display: none;
-}
-
-.u--flex {
-    display: flex!important;
-}
-
-.u--none {
-    display: none;
 }
 
 .app__col-right__profile-bar {
@@ -168,7 +161,8 @@ img {
 }
 
 .app__col-right__splash-screen {
-    width: 65%;
+    position: absolute;
+    width: 100%;
     height: 100%;
     background-image: url('../img/splash_screen.png');
     background-size: contain;

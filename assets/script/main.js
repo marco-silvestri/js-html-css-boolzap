@@ -3,12 +3,12 @@ $(document).ready(function () {
     /* References */
 
     var buttonSubmit = $('.app__col-right__chat-bar__send-button i');
-    var inputArea = $('.app__col-right__chat-bar input');
-    var chatBox = $('.app__col-right__chat-box');
-    var appRight = $('#app__col-right');
     var chatItem = $('.app__col-left__chat-list__chat-item');
     var chatTitle = $('.app__col-left__chat-list__chat-item__item-text__contact-name');
     var searchBar = $('.app__col-left__search-bar input');
+    var inputArea = $('.app__col-right__chat-bar input');
+    var chatBox = $('.app__col-right__chat-box');
+    var appRight = $('#app__col-right');
     var splashScreen = $('.app__col-right__splash-screen');
     var contactName = $('.app__col-right__profile-bar__profile-item__contact-name').children();
     var chatAvatar = $('.app__col-right__profile-bar img');
@@ -22,7 +22,7 @@ $(document).ready(function () {
     // Add a custom attribute for pointing
     for (var i = 0; i < chatItem.length; i++) {
         chatItem.eq(i).attr('data-contact', i);  
-    }  
+    }
 
     // Status of the send icon
     var iconFlipper;
@@ -49,12 +49,13 @@ $(document).ready(function () {
         flipSendIcon();
     });
 
-    searchBar.keyup(function(e) {
-        searchHighlight();
+    searchBar.keyup(function() {
+        var searchKey = $(this).val().toLowerCase().trim();
+        searchHighlight(searchKey);
     });
 
     /****************
-    *  Functions
+     *    Functions
     *****************/
 
     // Add a new non-empty element
@@ -64,8 +65,8 @@ $(document).ready(function () {
         }
         else {
             getTemplates();
-            cloneTemplateText.prepend(inputArea.val().trim());
-            cloneTemplateTime.prepend(getTimeFormatted());
+            cloneTemplateText.text(inputArea.val().trim());
+            cloneTemplateTime.text(getTimeFormatted());
             cloneTemplateMessage.addClass('message--sent').append(cloneTemplateText, cloneTemplateTime);
             chatBox.append(cloneTemplateMessage);
             inputArea.val('');
@@ -77,15 +78,15 @@ $(document).ready(function () {
 
     // Add a random answer
     function addAutoAnswer(){
-        getTemplates();
-        cloneTemplateText.prepend(pickRandomAnswer());
-        cloneTemplateTime.prepend(getTimeFormatted());
+        cloneTemplateText.text(pickRandomAnswer());
+        cloneTemplateTime.text(getTimeFormatted());
         cloneTemplateMessage.removeClass('message--sent').addClass('message--received').append(cloneTemplateText, cloneTemplateTime);
         chatBox.append(cloneTemplateMessage);
     };
 
     // Get blank templates
     function getTemplates(){
+
         cloneTemplateMessage = $('.templates .app__col-right__chat-box__message').clone();
         cloneTemplateText = $('.templates .app__col-right__chat-box__message .message__body').clone();
         cloneTemplateTime = $('.templates .app__col-right__chat-box__message .message__time').clone();
@@ -128,7 +129,7 @@ $(document).ready(function () {
             'Preferisco la seconda opzione.',
             'Hai ragione.',
             'Ti capisco perfettamente',
-            'Lo sai che posso trattenere il respire per 10 minuti?',
+            'Lo sai che posso trattenere il respiro per 10 minuti?',
             'Si, ma scrivilo meglio.',
             'lol',
             'ahahah',
@@ -139,17 +140,18 @@ $(document).ready(function () {
         return answersCollection[randomNumber];
     };
 
-    // Search function
-    function searchHighlight() {
-        for (let i = 0; i < chatTitle.length; i++) {
-            if(chatTitle.eq(i).children().text().includes(searchBar.val())){
-                chatItem.eq(i).show();
+    // Search function    
+    function searchHighlight(searchKey) {
+        chatItem.each(function() {
+            var thisElement = $(this).find('h2').text().toLowerCase();
+            if(thisElement.includes(searchKey)){
+                $(this).show();
             }
             else {
-                chatItem.eq(i).hide();
+                $(this).hide();
             }
-        }
-    }
+        });
+    };
 
     // Load contact details from the contact list on the left to the top bar on the right
     function loaderContact() {
@@ -157,9 +159,7 @@ $(document).ready(function () {
         chatItem.removeClass('chat-item--active');
         $(this).addClass('chat-item--active');
         splashScreen.remove();
-        appRight.removeClass('u--none');
-        appRight.addClass('u--flex');
         contactName.text($(this).find('h2').text());
         chatAvatar.attr('src',src);
-    }
+    };
 });
