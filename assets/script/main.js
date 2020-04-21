@@ -90,6 +90,7 @@ $(document).ready(function () {
             inputArea.val('');
             iconFlipper = false;
             flipSendIcon();
+            scrollMessage();
             setTimeout(addAutoAnswer, 1000);  
         }
     };
@@ -101,6 +102,7 @@ $(document).ready(function () {
         cloneTemplateTime.text(getTimeFormatted());
         cloneTemplateMessage.removeClass('message--sent').addClass('message--received').append(cloneTemplateText, cloneTemplateTime);
         chatBoxActive.append(cloneTemplateMessage);
+        scrollMessage();
     };
 
     // Get blank templates
@@ -184,4 +186,10 @@ $(document).ready(function () {
         chatBox.removeClass('u--active');
         $('.app__col-right__chat-box[data-contact="'+ contact +'"').addClass('u--active');
     };
+
+    // Scroll to the last message
+    function scrollMessage() {
+        var pixelScroll = chatBoxActive.height();
+        chatBox.scrollTop(pixelScroll);
+    }
 });
