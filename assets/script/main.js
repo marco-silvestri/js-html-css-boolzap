@@ -4,11 +4,9 @@ $(document).ready(function () {
 
     var buttonSubmit = $('.app__col-right__chat-bar__send-button i');
     var chatItem = $('.app__col-left__chat-list__chat-item');
-    //var chatTitle = $('.app__col-left__chat-list__chat-item__item-text__contact-name');
     var searchBar = $('.app__col-left__search-bar input');
     var inputArea = $('.app__col-right__chat-bar input');
     var chatBox = $('.app__col-right__chat-box');
-    //var appRight = $('#app__col-right');
     var splashScreen = $('.app__col-right__splash-screen');
     var contactName = $('.app__col-right__profile-bar__profile-item__contact-name').children();
     var chatAvatar = $('.app__col-right__profile-bar img');
@@ -20,10 +18,12 @@ $(document).ready(function () {
     var cloneTemplateText;
     var cloneTemplateTime;
 
-    // Add a custom attribute for pointing
+    // Add a custom attribute for pointing and update last seen time according to the last message
     for (var i = 0; i < chatItem.length; i++) {
         chatItem.eq(i).attr('data-contact', i);
         chatBox.eq(i).attr('data-contact', i);
+        var chatTime = chatBox.eq(i).find('.app__col-right__chat-box__message:last-child').children('span.message__time').text();
+        chatItem.eq(i).find('.app__col-left__chat-list__item-time span').text(chatTime);
     }
 
     // Status of the send icon
@@ -102,6 +102,8 @@ $(document).ready(function () {
         cloneTemplateTime.text(getTimeFormatted());
         cloneTemplateMessage.removeClass('message--sent').addClass('message--received').append(cloneTemplateText, cloneTemplateTime);
         chatBoxActive.append(cloneTemplateMessage);
+        var chatTime = chatBoxActive.find('.app__col-right__chat-box__message:last-child').children('span.message__time').text();
+        $('.app__col-right__profile-bar__profile-item__last-access span').text('Ultimo accesso oggi alle ' + chatTime);
         scrollMessage();
     };
 
@@ -184,7 +186,10 @@ $(document).ready(function () {
         contactName.text($(this).find('h2').text());
         chatAvatar.attr('src',src);
         chatBox.removeClass('u--active');
-        $('.app__col-right__chat-box[data-contact="'+ contact +'"').addClass('u--active');
+        $('.app__col-right__chat-box[data-contact="'+ contact +'"').addClass('u--active');        
+        chatBoxActive = $('.app__col-right__chat-box.u--active');
+        var chatTime = chatBoxActive.find('.app__col-right__chat-box__message:last-child').children('span.message__time').text();
+        $('.app__col-right__profile-bar__profile-item__last-access span').text('Ultimo accesso oggi alle ' + chatTime);
     };
 
     // Scroll to the last message
